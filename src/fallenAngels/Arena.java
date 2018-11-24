@@ -1,6 +1,5 @@
 package fallenAngels;
 
-import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -62,7 +61,7 @@ public class Arena {
             jogador1.ptsVida += (heal.danoBase * random);
             jogador1.fatorReducao = 1 - heal.fatorReducao;
             jogo.notificarHeal((heal.danoBase * random), heal.fatorReducao);
-        }jogo.renderGameScreen(this);
+        }jogo.tela(this);
     }
 
     public boolean informarConectado(){

@@ -24,8 +24,6 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
 
     public void renderGameScreen(Arena arena){
         this.arena = arena;
-        seta1 = 0;
-        seta2 = 0;
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
         setMaximumSize(new Dimension(WIDTH, HEIGHT));
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -95,7 +93,13 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
                 else if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT) trocarLeft();
             }
         });
+        tela(this.arena);
+    }
 
+    public void tela(Arena arena){
+        seta1 = 0;
+        seta2 = 0;
+        this.arena = arena;
         setVisible(true);
         repaint();
     }
@@ -197,13 +201,14 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
     }
 
     private void tratarEnter(){
+        System.out.println(seta1 + " , " + seta2);
         if(seta2 == 0) {
             if(seta1 == 0) seta1 = 2;
             else if(seta1 == 1) seta1 = 3;
             seta2 += 1;
             repaint();
         }else{
-            dispose();
+            setVisible(false);
             arena.processarJogada(seta1, seta2);
         }
     }

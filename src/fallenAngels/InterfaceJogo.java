@@ -11,20 +11,21 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 420;
     private static final String NAME = "Fallen Angels";
-    private Jogador jogador1, jogador2;
     private int seta1, seta2;
+    Arena arena;
+    DecimalFormat formato = new DecimalFormat("#.00");
 
-    public void renderGameScreen(Jogador jogador1, Jogador jogador2, int seta1, int seta2){
-        this.jogador1 = jogador1;
-        this.jogador2 = jogador2;
-        this.seta1 = seta1;
-        this.seta2 = seta2;
-
+    public void renderGameScreen(Arena arena){
+        this.arena = arena;
+        seta1 = 0;
+        seta2 = 0;
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
         setMaximumSize(new Dimension(WIDTH, HEIGHT));
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -59,7 +60,7 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
 
         JLabel image = null;
         try {
-            image = new JLabel(new ImageIcon(new URL(jogador1.url)));
+            image = new JLabel(new ImageIcon(new URL(arena.jogador1.url)));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -68,7 +69,7 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
 
         JLabel image2 = null;
         try {
-            image2 = new JLabel(new ImageIcon(new URL(jogador2.url)));
+            image2 = new JLabel(new ImageIcon(new URL(arena.jogador2.url)));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -99,14 +100,15 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
         repaint();
     }
 
+
     @Override
     public void paint(Graphics g){
         super.paint(g);
         g.setColor(Color.red);
-        g.drawString(jogador1.name,135,220);
-        g.drawString("Vida: " + jogador1.ptsVida, 135, 237);
-        g.drawString(jogador2.name, 530, 220);
-        g.drawString("Vida: "+ jogador2.ptsVida,530,237);
+        g.drawString(arena.jogador1.name,135,220);
+        g.drawString("Vida: " + arena.jogador1.ptsVida, 135, 237);
+        g.drawString(arena.jogador2.name, 530, 220);
+        g.drawString("Vida: "+ arena.jogador2.ptsVida,530,237);
 
         g.setColor(Color.BLACK);
         g.fillRect(135, 80, 100, 40);
@@ -125,9 +127,9 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
                 g.setColor(Color.BLACK);
                 g.fillRect(245,80,150,60);
                 g.setColor(Color.WHITE);
-                g.drawString(jogador1.golpe1.name, 265, 93);
-                g.drawString(jogador1.golpe2.name, 265, 110);
-                g.drawString(jogador1.golpe3.name, 265, 127);
+                g.drawString(arena.jogador1.golpe1.name, 265, 93);
+                g.drawString(arena.jogador1.golpe2.name, 265, 110);
+                g.drawString(arena.jogador1.golpe3.name, 265, 127);
                 switch (seta2){
                     case 1:
                         g.drawString("~>",245,93);
@@ -144,9 +146,9 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
                 g.setColor(Color.BLACK);
                 g.fillRect(245,80,150,60);
                 g.setColor(Color.WHITE);
-                g.drawString(jogador1.heal1.name, 265, 93);
-                g.drawString(jogador1.heal2.name, 265, 110);
-                g.drawString(jogador1.heal3.name, 265, 127);
+                g.drawString(arena.jogador1.heal1.name, 265, 93);
+                g.drawString(arena.jogador1.heal2.name, 265, 110);
+                g.drawString(arena.jogador1.heal3.name, 265, 127);
                 switch (seta2){
                     case 1:
                         g.drawString("~>",245,93);
@@ -201,15 +203,21 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
             seta2 += 1;
             repaint();
         }else{
-            AtorJogador ator = new AtorJogador();
-            ator.tratarLance(seta1, seta2);
-            //processarJogada(seta1,seta2);
+            dispose();
+            arena.processarJogada(seta1, seta2);
         }
     }
 
     public void notificarDano(double dano){
         JFrame frame = new JFrame();
-        JOptionPane.showMessageDialog(frame, "Causou " + dano + " de dano!", "Erro", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(frame, "Causou " + formato.format(dano) + " de dano!",
+                "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void notificarHeal(double heal, double fatorReducao){
+        JFrame frame = new JFrame();
+        JOptionPane.showMessageDialog(frame, "Recuperou " + formato.format(heal) + " de vida e aplicou fator "
+                + formato.format(fatorReducao), "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
 

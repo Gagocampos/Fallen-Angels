@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="20a610f4-e347-4231-8531-b061113a8d80" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fallen Angels.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Fallen Angels.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fallen Angels/fallenAngels/Arena.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fallen Angels/fallenAngels/Arena.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fallen Angels/fallenAngels/InterfaceJogo$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fallen Angels/fallenAngels/InterfaceJogo$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fallen Angels/fallenAngels/InterfaceJogo$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fallen Angels/fallenAngels/InterfaceJogo$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fallen Angels/fallenAngels/InterfaceJogo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fallen Angels/fallenAngels/InterfaceJogo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fallenAngels/Arena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fallenAngels/Arena.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fallenAngels/InterfaceJogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fallenAngels/InterfaceJogo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fallenAngels/AtorJogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fallenAngels/AtorJogador.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,12 +16,14 @@
     <session id="-898537910">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="15" />
+          <entry key="project.closed" value="17" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.22" value="1" />
+          <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.29" value="1" />
@@ -37,7 +33,7 @@
           <entry key="project.open.time.45" value="1" />
           <entry key="project.open.time.47" value="1" />
           <entry key="project.open.time.82" value="1" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -55,13 +51,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="9116" />
-          <entry key="txt" value="16" />
+          <entry key="txt" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="9116" />
-          <entry key="PLAIN_TEXT" value="16" />
+          <entry key="PLAIN_TEXT" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -72,7 +68,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fallenAngels/Arena.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="740">
+            <state relative-caret-position="930">
               <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -84,7 +80,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/fallenAngels/InterfaceJogo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1470">
+            <state relative-caret-position="503">
               <caret line="100" column="18" selection-start-line="100" selection-start-column="18" selection-end-line="100" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -96,7 +92,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fallenAngels/InterfaceInicial.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
+            <state relative-caret-position="90">
               <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -108,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fallenAngels/AtorJogador.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+            <state relative-caret-position="255">
+              <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -156,6 +152,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -183,13 +181,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543081856239" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543086936526" />
     <property name="external.system.task.project.file.to.start" value="$PROJECT_DIR$" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
@@ -264,14 +260,21 @@
       <option name="project" value="LOCAL" />
       <updated>1543078169205</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Consertando bug(2)">
+      <created>1543083925037</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1543083925037</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1360" height="719" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25038052" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25799087" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -304,7 +307,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Consertando bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Consertando bug" />
+    <MESSAGE value="Consertando bug(2)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Consertando bug(2)" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/out/production/Fallen Angels/Arena.class" />
@@ -345,16 +349,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fallenAngels/AtorJogador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/fallenAngels/Arena.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="740">
+        <state relative-caret-position="930">
           <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -364,7 +361,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/fallenAngels/InterfaceInicial.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
+        <state relative-caret-position="90">
           <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -372,9 +369,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/fallenAngels/AtorJogador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/fallenAngels/InterfaceJogo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1470">
+        <state relative-caret-position="503">
           <caret line="100" column="18" selection-start-line="100" selection-start-column="18" selection-end-line="100" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />

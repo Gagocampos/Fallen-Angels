@@ -66,7 +66,7 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
 
         JLabel image2 = null;
         try {
-            image2 = new JLabel(new ImageIcon(new URL(ator.jogador2.url)));
+            image2 = new JLabel(new ImageIcon(new URL(ator.arena.jogador2.url)));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -212,16 +212,22 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
         }
     }
 
-    public void notificarDano(double dano){
+//    public void notificarDano(double dano){
+//        JFrame frame = new JFrame();
+//        JOptionPane.showMessageDialog(frame, "Causou " + formato.format(dano) + " de dano!",
+//                "Erro", JOptionPane.ERROR_MESSAGE);
+//    }
+//
+//    public void notificarHeal(double heal, double fatorReducao){
+//        JFrame frame = new JFrame();
+//        JOptionPane.showMessageDialog(frame, "Recuperou " + formato.format(heal) + " de vida e aplicou fator "
+//                + formato.format(fatorReducao), "Erro", JOptionPane.ERROR_MESSAGE);
+//    }
+    public void notificarVencedor(int i){
         JFrame frame = new JFrame();
-        JOptionPane.showMessageDialog(frame, "Causou " + formato.format(dano) + " de dano!",
-                "Erro", JOptionPane.ERROR_MESSAGE);
-    }
-
-    public void notificarHeal(double heal, double fatorReducao){
-        JFrame frame = new JFrame();
-        JOptionPane.showMessageDialog(frame, "Recuperou " + formato.format(heal) + " de vida e aplicou fator "
-                + formato.format(fatorReducao), "Erro", JOptionPane.ERROR_MESSAGE);
+        if (i==1) JOptionPane.showMessageDialog(frame, "Você venceu!", "Vencedor", JOptionPane.WARNING_MESSAGE);
+        else if(i ==2)
+            JOptionPane.showMessageDialog(frame, "Seu oponente venceu!", "Vencedor", JOptionPane.WARNING_MESSAGE);
     }
 
     public void notificarErroVez(){

@@ -1,6 +1,8 @@
 package fallenAngels;
 
-public class Heal {
+import br.ufsc.inf.leobr.cliente.Jogada;
+
+public class Heal implements Jogada {
     float danoBase, fatorReducao, range;
     String name;
 

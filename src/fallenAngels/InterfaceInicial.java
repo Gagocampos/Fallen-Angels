@@ -225,7 +225,6 @@ public class InterfaceInicial implements ActionListener{
         JOptionPane.showMessageDialog(frame, "Você não está conectado!", "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
-
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 

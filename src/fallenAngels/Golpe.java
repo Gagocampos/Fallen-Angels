@@ -1,6 +1,8 @@
 package fallenAngels;
 
-public class Golpe {
+import br.ufsc.inf.leobr.cliente.Jogada;
+
+public class Golpe implements Jogada {
     float danoBase, range;
     String name;
 

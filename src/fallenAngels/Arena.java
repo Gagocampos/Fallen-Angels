@@ -1,9 +1,8 @@
 package fallenAngels;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import br.ufsc.inf.leobr.cliente.Jogada;
 
-public class Arena {
+public class Arena implements Jogada {
     public boolean partidaAndamento = false;
     Jogador jogador1 = new Jogador();
     Jogador jogador2 = new Jogador();

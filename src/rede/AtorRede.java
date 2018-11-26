@@ -35,6 +35,7 @@ public class AtorRede implements OuvidorProxy {
 	
 	public void iniciarPartidaRede() {
 		try {
+		    System.out.println("Procurando oponente...");
 			proxy.iniciarPartida(2);
 		} catch (NaoConectadoException e) {
 			e.printStackTrace();
@@ -42,6 +43,7 @@ public class AtorRede implements OuvidorProxy {
 	}
 	
 	public void enviarJogada(Arena arena) {
+	    ehMinhaVez = false;
 		Mensagem msg = new Mensagem(arena);
 		try {
 			proxy.enviaJogada(msg);
@@ -52,12 +54,14 @@ public class AtorRede implements OuvidorProxy {
 
 	@Override
 	public void receberJogada(Jogada jogada) {
+	    ehMinhaVez = true;
 		Mensagem msg = (Mensagem) jogada;
 		atorJogador.receberMensagemRede(msg.getMensagem());
 	}
 
 	@Override
 	public void iniciarNovaPartida(Integer posicao) {
+	    System.out.println("Achou!! Posicao:" + posicao);
 	    if(posicao == 1)
 	        ehMinhaVez = true;
 	    else if(posicao == 2)

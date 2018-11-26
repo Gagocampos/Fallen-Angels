@@ -1,8 +1,10 @@
 package fallenAngels;
 
+import br.ufsc.inf.leobr.cliente.Jogada;
+
 import java.util.ArrayList;
 
-public class Jogador {
+public class Jogador implements Jogada {
     String name, url;
     int ptsVida, vidaMaxima;
     float fatorReducao;

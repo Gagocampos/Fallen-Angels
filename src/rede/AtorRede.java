@@ -14,19 +14,22 @@ import fallenAngels.AtorJogador;
 public class AtorRede implements OuvidorProxy {
 	private AtorJogador atorJogador;
 	private Proxy proxy;
+	private boolean ehMinhaVez = false;
 	
 	public AtorRede(AtorJogador atorJogador) {
 		super();
 		this.atorJogador = atorJogador;
 		proxy = Proxy.getInstance();
+		proxy.addOuvinte(this);
 	}
 	
-	public void conectar(String nome, String servidor) {
+	public boolean conectar(String nome, String servidor) {
 		try {
 			proxy.conectar(servidor, nome);
+			return true;
 		} catch (JahConectadoException | NaoPossivelConectarException | ArquivoMultiplayerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
@@ -34,7 +37,6 @@ public class AtorRede implements OuvidorProxy {
 		try {
 			proxy.iniciarPartida(2);
 		} catch (NaoConectadoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -49,11 +51,21 @@ public class AtorRede implements OuvidorProxy {
 	}
 
 	@Override
+	public void receberJogada(Jogada jogada) {
+		Mensagem msg = (Mensagem) jogada;
+		atorJogador.receberMensagemRede(msg.getMensagem());
+	}
+
+	@Override
 	public void iniciarNovaPartida(Integer posicao) {
+	    if(posicao == 1)
+	        ehMinhaVez = true;
+	    else if(posicao == 2)
+	        ehMinhaVez = false;
 		atorJogador.iniciarPartidaRede();
 
 	}
-	
+
 	public void desconectar() {
 		try {
 			proxy.desconectar();
@@ -61,6 +73,10 @@ public class AtorRede implements OuvidorProxy {
 			e.printStackTrace();
 		}
 	}
+
+	public boolean ehMinhaVez(){
+	    return ehMinhaVez;
+    }
 
 	@Override
 	public void finalizarPartidaComErro(String message) {
@@ -72,12 +88,6 @@ public class AtorRede implements OuvidorProxy {
 	public void receberMensagem(String msg) {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void receberJogada(Jogada jogada) {
-		Mensagem msg = (Mensagem) jogada;
-		atorJogador.receberMensagemRede(msg.getMensagem());
 	}
 
 	@Override

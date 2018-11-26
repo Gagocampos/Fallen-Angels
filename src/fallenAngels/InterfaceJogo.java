@@ -12,18 +12,17 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 420;
     private static final String NAME = "Fallen Angels";
-    private int seta1, seta2;
-    Arena arena;
+    public int seta1, seta2;
+    AtorJogador ator;
     DecimalFormat formato = new DecimalFormat("#.00");
 
-    public void renderGameScreen(Arena arena){
-        this.arena = arena;
+    public void renderGameScreen(AtorJogador ator){
+        this.ator = ator;
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
         setMaximumSize(new Dimension(WIDTH, HEIGHT));
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -58,7 +57,7 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
 
         JLabel image = null;
         try {
-            image = new JLabel(new ImageIcon(new URL(arena.jogador1.url)));
+            image = new JLabel(new ImageIcon(new URL(ator.arena.jogador1.url)));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -67,7 +66,7 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
 
         JLabel image2 = null;
         try {
-            image2 = new JLabel(new ImageIcon(new URL(arena.jogador2.url)));
+            image2 = new JLabel(new ImageIcon(new URL(ator.jogador2.url)));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -93,13 +92,13 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
                 else if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT) trocarLeft();
             }
         });
-        tela(this.arena);
+        tela(this.ator);
     }
 
-    public void tela(Arena arena){
+    public void tela(AtorJogador ator){
         seta1 = 0;
         seta2 = 0;
-        this.arena = arena;
+        this.ator = ator;
         setVisible(true);
         repaint();
     }
@@ -109,10 +108,10 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
     public void paint(Graphics g){
         super.paint(g);
         g.setColor(Color.red);
-        g.drawString(arena.jogador1.name,135,220);
-        g.drawString("Vida: " + arena.jogador1.ptsVida, 135, 237);
-        g.drawString(arena.jogador2.name, 530, 220);
-        g.drawString("Vida: "+ arena.jogador2.ptsVida,530,237);
+        g.drawString(ator.arena.jogador1.name,135,220);
+        g.drawString("Vida: " + ator.arena.jogador1.ptsVida, 135, 237);
+        g.drawString(ator.arena.jogador2.name, 530, 220);
+        g.drawString("Vida: "+ ator.arena.jogador2.ptsVida,530,237);
 
         g.setColor(Color.BLACK);
         g.fillRect(135, 80, 100, 40);
@@ -131,9 +130,9 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
                 g.setColor(Color.BLACK);
                 g.fillRect(245,80,150,60);
                 g.setColor(Color.WHITE);
-                g.drawString(arena.jogador1.golpe1.name, 265, 93);
-                g.drawString(arena.jogador1.golpe2.name, 265, 110);
-                g.drawString(arena.jogador1.golpe3.name, 265, 127);
+                g.drawString(ator.arena.jogador1.golpe1.name, 265, 93);
+                g.drawString(ator.arena.jogador1.golpe2.name, 265, 110);
+                g.drawString(ator.arena.jogador1.golpe3.name, 265, 127);
                 switch (seta2){
                     case 1:
                         g.drawString("~>",245,93);
@@ -150,9 +149,9 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
                 g.setColor(Color.BLACK);
                 g.fillRect(245,80,150,60);
                 g.setColor(Color.WHITE);
-                g.drawString(arena.jogador1.heal1.name, 265, 93);
-                g.drawString(arena.jogador1.heal2.name, 265, 110);
-                g.drawString(arena.jogador1.heal3.name, 265, 127);
+                g.drawString(ator.arena.jogador1.heal1.name, 265, 93);
+                g.drawString(ator.arena.jogador1.heal2.name, 265, 110);
+                g.drawString(ator.arena.jogador1.heal3.name, 265, 127);
                 switch (seta2){
                     case 1:
                         g.drawString("~>",245,93);
@@ -209,7 +208,7 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
             repaint();
         }else{
             setVisible(false);
-            arena.processarJogada(seta1, seta2);
+            ator.novaMensagem();
         }
     }
 
@@ -225,6 +224,10 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
                 + formato.format(fatorReducao), "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
+    public void notificarErroVez(){
+        JFrame frame = new JFrame();
+        JOptionPane.showMessageDialog(frame, "Espere a sua vez!", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

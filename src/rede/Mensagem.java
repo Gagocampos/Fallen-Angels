@@ -11,8 +11,8 @@ public class Mensagem implements Jogada {
 		this.arena = arena;
 	}
 
-	public Mensagem getMensagem() {
-		return this;
+	public Arena getMensagem() {
+		return this.arena;
 	}
 	
 }

@@ -11,9 +11,11 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class InterfaceInicial extends Arena implements ActionListener{
+public class InterfaceInicial implements ActionListener{
+    AtorJogador ator;
 
-    public void screenRender(boolean conectado){
+    public void screenRender(AtorJogador jogador){
+        this.ator = jogador;
         final int WIDTH = 600;
         final int HEIGHT = WIDTH/12*9;
         final String NAME = "Fallen Angels";
@@ -45,7 +47,7 @@ public class InterfaceInicial extends Arena implements ActionListener{
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if(conectado == false) {
+                if(jogador.conectado == false) {
                     frame.dispose();
                     obterServidor();
                 }
@@ -69,9 +71,9 @@ public class InterfaceInicial extends Arena implements ActionListener{
         jogar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if(conectado == true){
+                if(jogador.conectado){
                     frame.dispose();
-                    iniciarPartida();
+                    jogador.acaoIniciarPartida();
                 }else{
                     notificarNaoConectado();
                 }
@@ -141,8 +143,6 @@ public class InterfaceInicial extends Arena implements ActionListener{
         frame.setSize(400, 310);
         frame.setVisible(true);
         frame.setLayout(new FlowLayout());
-
-        AtorJogador ator = new AtorJogador();
 
         JLabel demon = null;
         try {

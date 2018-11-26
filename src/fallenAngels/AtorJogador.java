@@ -1,30 +1,58 @@
 package fallenAngels;
 
+import rede.AtorRede;
 import rede.Mensagem;
 
 public class AtorJogador extends Arena{
-    String jogadorId, servidor;
     boolean vencedor = false;
-    boolean vezAtual = false;
+    boolean conectado = false;
+    int nPersonagem;
+    AtorRede rede;
+    Arena arena;
+    InterfaceJogo jogo;
+    int rodada = 0;
+
+    public static void main(String args[]){
+        InterfaceInicial game = new InterfaceInicial();
+        game.screenRender(new AtorJogador());
+    }
+
+    public AtorJogador(){
+        super();
+        rede = new AtorRede(this);
+    }
 
     public void conectar(String servidor, String jogadorId, int nPersonagem){
-        atribuirConectado(true);
+        this.nPersonagem = nPersonagem;
+        conectado = rede.conectar(jogadorId, "localhost");
         InterfaceInicial game = new InterfaceInicial();
-        game.screenRender(true);
+        game.screenRender(this);
 
     }
 
-    public void tratarLance(int seta1, int seta2){
-        processarJogada(seta1, seta2);
+    public void acaoIniciarPartida(){
+        rede.iniciarPartidaRede();
     }
 
 	public void iniciarPartidaRede() {
-		// TODO Auto-generated method stub
-		
+		arena = new Arena();
+		arena.inicializarArena(nPersonagem);
+		jogo = new InterfaceJogo();
+		jogo.renderGameScreen(this);
 	}
 
-	public void receberMensagemRede(Mensagem mensagem) {
-		// TODO Auto-generated method stub
-		
+	public void novaMensagem(){
+        if(rede.ehMinhaVez()){
+            arena.processarJogada(jogo.seta1, jogo.seta2);
+            rede.enviarJogada(arena);
+        }else{
+            jogo.notificarErroVez();
+        }
+        jogo.tela(this);
+    }
+
+	public void receberMensagemRede(Arena arena) {
+		this.arena = arena;
+		jogo.tela(this);
 	}
 }

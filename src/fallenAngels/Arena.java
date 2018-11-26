@@ -40,14 +40,20 @@ public class Arena implements Jogada {
         }
         if(seta1 == 0 || seta1 == 2){
             double random = ((Math.random() * golpe.range/100 - golpe.range/200)*2)+1;
-            jogador2.ptsVida -= ((golpe.danoBase * random)*jogador2.fatorReducao);
-            if(jogador2.ptsVida < 0)
+            random = ((golpe.danoBase * random)*jogador2.fatorReducao);
+            if(random > 0) {
+                jogador2.ptsVida -= random;
+            }
+            if(jogador2.ptsVida < 0) {
                 jogador2.ptsVida = 0;
+            }
             jogador1.fatorReducao = 1;
         }else{
             double random = ((Math.random() * heal.range/100 - heal.range/200)*2)+1;
             jogador1.ptsVida += (heal.danoBase * random);
-            jogador1.fatorReducao = 1 - heal.fatorReducao;
+            if(jogador1.ptsVida > jogador1.vidaMaxima)
+                jogador1.ptsVida = jogador1.vidaMaxima;
+            jogador1.fatorReducao = 1 - (heal.fatorReducao/100);
         }
     }
 }

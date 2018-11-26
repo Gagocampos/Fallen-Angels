@@ -1,17 +1,17 @@
 package fallenAngels;
 
+import br.ufsc.inf.leobr.cliente.Jogada;
 import rede.AtorRede;
 import rede.Mensagem;
 
-public class AtorJogador extends Arena{
-    boolean vencedor = false;
+public class AtorJogador extends Arena {
     boolean conectado = false;
     int nPersonagem;
-    InterfaceInicial game;
+    public InterfaceInicial game;
     AtorRede rede;
     Arena arena;
     InterfaceJogo jogo;
-    int rodada = 0;
+    public int rodada = 0;
 
     public static void main(String args[]){
         InterfaceInicial game = new InterfaceInicial();
@@ -35,21 +35,24 @@ public class AtorJogador extends Arena{
         rede.iniciarPartidaRede();
     }
 
-	public void iniciarPartidaRede() {
-		arena = new Arena();
+    public void iniciarPartidaRede() {
+        arena = new Arena();
         arena.inicializarArena(nPersonagem);
-        enviarEstadoInicial();
-        jogo = new InterfaceJogo();
-        jogo.renderGameScreen(this);
-        System.out.println("Imprimiu tela!");
+        boolean sucesso = rede.enviarEstadoInicial(arena);
+        if(sucesso){
+            jogo = new InterfaceJogo();
+            System.out.println("Imprimindo tela...");
+            jogo.renderGameScreen(this);
+        }
 
-	}
-
-	public void enviarEstadoInicial(){
-        rede.enviarJogada(arena);
     }
 
-	public void novaMensagem(){
+    public void receberEstadoInicial(Arena arena){
+        this.arena.jogador2 = arena.jogador1;
+        rodada += 1;
+    }
+
+    public void novaMensagem(){
         if(rede.ehMinhaVez()){
             arena.processarJogada(jogo.seta1, jogo.seta2);
             rede.enviarJogada(arena);
@@ -59,21 +62,34 @@ public class AtorJogador extends Arena{
         jogo.tela(this);
     }
 
-	public void receberMensagemRede(Arena arena) {
-        if(rodada == 0){
-            rodada += 1;
-            this.arena.jogador2 = arena.jogador1;
+    public void reiniciar(){
+        if(rede.ehMinhaVez()){
+            arena.jogador1.ptsVida = arena.jogador1.vidaMaxima;
+            arena.jogador2.ptsVida = arena.jogador2.vidaMaxima;
+            rede.enviarJogada(arena);
         }else {
-            this.arena.jogador2 = arena.jogador1;
-            this.arena.jogador1 = arena.jogador2;
-            if (arena.jogador1.ptsVida == 0) {
-                jogo.notificarVencedor(2);
-                rede.enviarJogada(arena);
-            } else if (arena.jogador2.ptsVida == 0) {
-                jogo.notificarVencedor(2);
-                rede.enviarJogada(arena);
-            }
-            jogo.tela(this);
+            jogo.notificarErroVez();
         }
-	}
+    }
+
+    public void receberMensagemRede(Arena arena) {
+        this.arena.jogador2 = arena.jogador1;
+        this.arena.jogador1 = arena.jogador2;
+        if (arena.jogador1.ptsVida == 0) {
+            jogo.notificarVencedor(2);
+            rede.enviarJogada(arena);
+            System.exit(0);
+        } else if (arena.jogador2.ptsVida == 0) {
+            jogo.notificarVencedor(1);
+            rede.enviarJogada(arena);
+            System.exit(0);
+        }
+        jogo.tela(this);
+    }
+    public void desconectar(){
+        rede.desconectar();
+        conectado = false;
+        game = new InterfaceInicial();
+        game.screenRender(this);
+    }
 }

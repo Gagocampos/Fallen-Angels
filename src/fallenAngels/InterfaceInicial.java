@@ -1,5 +1,7 @@
 package fallenAngels;
 
+import br.ufsc.inf.leobr.cliente.Jogada;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +13,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class InterfaceInicial implements ActionListener{
+public class InterfaceInicial implements ActionListener, Jogada {
     AtorJogador ator;
 
     public void screenRender(AtorJogador jogador){
@@ -57,6 +59,19 @@ public class InterfaceInicial implements ActionListener{
             }
         });
         menu.add(menuItem);
+        JMenuItem menuItem2 = new JMenuItem("Desconectar", KeyEvent.VK_T);
+        menuItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+        menuItem2.getAccessibleContext().setAccessibleDescription("Estabelecer conexão");
+        menuItem2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if(jogador.conectado == true) {
+                    frame.dispose();
+                    jogador.desconectar();
+                }
+            }
+        });
+        menu.add(menuItem2);
 
         Container c = frame.getContentPane();
         c.setLayout(null);
@@ -223,6 +238,16 @@ public class InterfaceInicial implements ActionListener{
     public void notificarNaoConectado(){
         JFrame frame = new JFrame();
         JOptionPane.showMessageDialog(frame, "Você não está conectado!", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void notificarPartidaComErro(){
+        JFrame frame = new JFrame();
+        JOptionPane.showMessageDialog(frame, "Houve um erro na partida!", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void notificarConexaoPerdida(){
+        JFrame frame = new JFrame();
+        JOptionPane.showMessageDialog(frame, "A conexão foi perdida!", "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override

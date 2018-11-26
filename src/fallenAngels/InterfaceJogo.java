@@ -1,5 +1,7 @@
 package fallenAngels;
 
+import br.ufsc.inf.leobr.cliente.Jogada;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +50,7 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                repaint();
+                ator.reiniciar();
             }
         });
         menu.add(item);
@@ -200,7 +202,6 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
     }
 
     private void tratarEnter(){
-        System.out.println(seta1 + " , " + seta2);
         if(seta2 == 0) {
             if(seta1 == 0) seta1 = 2;
             else if(seta1 == 1) seta1 = 3;

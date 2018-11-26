@@ -35,7 +35,6 @@ public class AtorRede implements OuvidorProxy {
 	
 	public void iniciarPartidaRede() {
 		try {
-		    System.out.println("Procurando oponente...");
 			proxy.iniciarPartida(2);
 		} catch (NaoConectadoException e) {
 			e.printStackTrace();
@@ -52,22 +51,37 @@ public class AtorRede implements OuvidorProxy {
 		}
 	}
 
+	public boolean enviarEstadoInicial(Arena arena){
+	    Mensagem msg = new Mensagem(arena);
+        try {
+            proxy.enviaJogada(msg);
+            return true;
+        } catch (NaoJogandoException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 	@Override
 	public void receberJogada(Jogada jogada) {
-	    ehMinhaVez = true;
-		Mensagem msg = (Mensagem) jogada;
-		atorJogador.receberMensagemRede(msg.getMensagem());
+        Mensagem msg = (Mensagem) jogada;
+        if(atorJogador.rodada == 0){
+            atorJogador.receberEstadoInicial(msg.getMensagem());
+        }else {
+            ehMinhaVez = true;
+            atorJogador.receberMensagemRede(msg.getMensagem());
+        }
 	}
 
 	@Override
 	public void iniciarNovaPartida(Integer posicao) {
-	    System.out.println("Achou!! Posicao:" + posicao);
-	    if(posicao == 1)
-	        ehMinhaVez = true;
-	    else if(posicao == 2)
-	        ehMinhaVez = false;
+	    if(posicao == 1) {
+            ehMinhaVez = true;
+        }
+	    else if(posicao == 2) {
+            ehMinhaVez = false;
+        }
 		atorJogador.iniciarPartidaRede();
-
 	}
 
 	public void desconectar() {
@@ -84,8 +98,8 @@ public class AtorRede implements OuvidorProxy {
 
 	@Override
 	public void finalizarPartidaComErro(String message) {
-		// TODO Auto-generated method stub
-
+		atorJogador.game.notificarPartidaComErro();
+        desconectar();
 	}
 
 	@Override
@@ -96,8 +110,8 @@ public class AtorRede implements OuvidorProxy {
 
 	@Override
 	public void tratarConexaoPerdida() {
-		// TODO Auto-generated method stub
-
+		atorJogador.game.notificarConexaoPerdida();
+        desconectar();
 	}
 
 	@Override

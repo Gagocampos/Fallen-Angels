@@ -25,8 +25,8 @@ public class Jogador implements Jogada {
                 vidaMaxima = ptsVida;
 
                 golpe1.criarGolpe("Condenação",750, 100);
-                golpe2.criarGolpe("Sugar alma",150, 10);
-                golpe3.criarGolpe("Coração demoníaco",200, 25);
+                golpe2.criarGolpe("Sugar alma",250, 10);
+                golpe3.criarGolpe("Coração demoníaco",400, 25);
 
                 heal1.criarHeal("Poção de cristal",600, 15, 25);
                 heal2.criarHeal("Pacto negro", 350, 50, 15);
@@ -36,7 +36,7 @@ public class Jogador implements Jogada {
             case 1:
                 name = "Bardawulf";
                 url = "https://i.imgur.com/asIIA77.png";
-                ptsVida = 1750;
+                ptsVida = 1950;
                 vidaMaxima = ptsVida;
 
                 golpe1.criarGolpe("Morder",300, 150);
@@ -66,14 +66,14 @@ public class Jogador implements Jogada {
             case 3:
                 name = "Taurus";
                 url = "https://i.imgur.com/a6BczbN.png";
-                ptsVida = 3000;
+                ptsVida = 2500;
                 vidaMaxima = ptsVida;
 
                 golpe1.criarGolpe("Pulverizar",800, 110);
                 golpe2.criarGolpe("Debandada",400, 75);
-                golpe3.criarGolpe("Chifrada",300, 1000);
+                golpe3.criarGolpe("Chifrada",300, 300);
 
-                heal1.criarHeal("Vontade inabalável",50, 100, 200);
+                heal1.criarHeal("Vontade inabalável",50, 85, 200);
                 heal2.criarHeal("Gênese súbita", 500, 45, 15);
                 heal3.criarHeal("Fator Reegen", 800, 20, 50);
                 break;

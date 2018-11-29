@@ -4,7 +4,7 @@ import br.ufsc.inf.leobr.cliente.Jogada;
 import rede.AtorRede;
 import rede.Mensagem;
 
-public class AtorJogador extends Arena {
+public class AtorJogador{
     boolean conectado = false;
     int nPersonagem;
     public InterfaceInicial game;
@@ -43,6 +43,8 @@ public class AtorJogador extends Arena {
             jogo = new InterfaceJogo();
             System.out.println("Imprimindo tela...");
             jogo.renderGameScreen(this);
+        }else{
+            jogo.notificarErroCriacao();
         }
 
     }

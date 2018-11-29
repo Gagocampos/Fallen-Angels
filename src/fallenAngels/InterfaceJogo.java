@@ -130,11 +130,14 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
                 break;
             case 2:
                 g.setColor(Color.BLACK);
-                g.fillRect(245,80,150,60);
+                g.fillRect(245,80,220,60);
                 g.setColor(Color.WHITE);
-                g.drawString(ator.arena.jogador1.golpe1.name, 265, 93);
-                g.drawString(ator.arena.jogador1.golpe2.name, 265, 110);
-                g.drawString(ator.arena.jogador1.golpe3.name, 265, 127);
+                g.drawString(ator.arena.jogador1.golpe1.name + "->(" + (int)ator.arena.jogador1.golpe1.danoBase +
+                        ", " + (int)ator.arena.jogador1.golpe1.range + ")", 265, 93);
+                g.drawString(ator.arena.jogador1.golpe2.name + "->(" + (int)ator.arena.jogador1.golpe2.danoBase +
+                        ", " + (int)ator.arena.jogador1.golpe2.range + ")", 265, 110);
+                g.drawString(ator.arena.jogador1.golpe3.name + "->(" + (int)ator.arena.jogador1.golpe3.danoBase +
+                        ", " + (int)ator.arena.jogador1.golpe3.range + ")", 265, 127);
                 switch (seta2){
                     case 1:
                         g.drawString("~>",245,93);
@@ -149,11 +152,14 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
                 break;
             case 3:
                 g.setColor(Color.BLACK);
-                g.fillRect(245,80,150,60);
+                g.fillRect(245,80,250,60);
                 g.setColor(Color.WHITE);
-                g.drawString(ator.arena.jogador1.heal1.name, 265, 93);
-                g.drawString(ator.arena.jogador1.heal2.name, 265, 110);
-                g.drawString(ator.arena.jogador1.heal3.name, 265, 127);
+                g.drawString(ator.arena.jogador1.heal1.name + "->(" + (int)ator.arena.jogador1.heal1.danoBase +
+                        ", " + (int)ator.arena.jogador1.heal1.range + ", " + (int)ator.arena.jogador1.heal1.fatorReducao + ")", 265, 93);
+                g.drawString(ator.arena.jogador1.heal2.name + "->(" + (int)ator.arena.jogador1.heal2.danoBase +
+                        ", " + (int)ator.arena.jogador1.heal2.range + ", " + (int)ator.arena.jogador1.heal2.fatorReducao + ")", 265, 110);
+                g.drawString(ator.arena.jogador1.heal3.name + "->(" + (int)ator.arena.jogador1.heal3.danoBase +
+                        ", " + (int)ator.arena.jogador1.heal3.range + ", " + (int)ator.arena.jogador1.heal3.fatorReducao + ")", 265, 127);
                 switch (seta2){
                     case 1:
                         g.drawString("~>",245,93);
@@ -234,6 +240,11 @@ class InterfaceJogo  extends JFrame implements ActionListener, KeyListener {
     public void notificarErroVez(){
         JFrame frame = new JFrame();
         JOptionPane.showMessageDialog(frame, "Espere a sua vez!", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void notificarErroCriacao(){
+        JFrame frame = new JFrame();
+        JOptionPane.showMessageDialog(frame, "Arena não criada!", "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override

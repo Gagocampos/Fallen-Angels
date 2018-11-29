@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class InterfaceInicial implements ActionListener, Jogada {
+public class InterfaceInicial implements ActionListener {
     AtorJogador ator;
 
     public void screenRender(AtorJogador jogador){
